@@ -12,10 +12,12 @@ import { usersSchema } from './schemas/users-schema'
 import { settingsSchema } from './schemas/admin-schema'
 import { mapSavesSchema } from './schemas/map-saves-schema'
 import { reportsSchema } from './schemas/reports-schema'
+import { dailyCountsSchema } from './schemas/daily-counts-schema'
 
 export const schemas: CollectionSchema[] = [
   usersSchema,
   settingsSchema,
   mapSavesSchema,
   reportsSchema,
+  dailyCountsSchema,
 ]

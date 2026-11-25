@@ -50,7 +50,7 @@ npm run build           # production build, with the static pages
 
 | Path | What lives there |
 | --- | --- |
-| `src/pages/` | One file per route: the map (`index.tsx`) and the place lists under `/locations` |
+| `src/pages/` | One file per route: the map (`index.tsx`), the place lists under `/locations`, and the owner's dashboard at `/admin` |
 | `src/map/` | The map itself: canvas, sidebar, place cards, filtering, and the visitor's saved data |
 | `src/map/data/` | The places, categories and reels as JSON |
 | `src/locations/` | The static place-list pages search engines read |

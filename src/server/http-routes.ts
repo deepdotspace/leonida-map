@@ -12,7 +12,7 @@ function jwtConfig(env: Env): JwtVerifierConfig {
   return { publicKey: env.AUTH_JWT_PUBLIC_KEY, issuer: env.AUTH_JWT_ISSUER }
 }
 
-async function resolveAuth(req: Request, env: Env): Promise<VerifyResult | null> {
+export async function resolveAuth(req: Request, env: Env): Promise<VerifyResult | null> {
   const header = req.headers.get('Authorization')
   const token = header?.startsWith('Bearer ') ? header.slice(7) : null
   if (!token) return null

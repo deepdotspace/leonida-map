@@ -7,13 +7,14 @@ export const REPORT_DETAILS_MAX = 500
 
 const reportFields = ['pinId', 'problem', 'details']
 
-/** Problems visitors report on a pin. Anyone can file one, signed in or not; only admins read them. */
+/** Problems visitors report on a pin. Anyone can file one, signed in or not; only admins read them and tick them resolved. */
 export const reportsSchema: CollectionSchema = {
   name: 'reports',
   columns: [
     { name: 'pinId', storage: 'text', interpretation: 'plain', required: true, immutable: true, maxLength: 64 },
     { name: 'problem', storage: 'text', interpretation: { kind: 'select', options: [...REPORT_PROBLEMS] }, required: true, maxLength: 32 },
     { name: 'details', storage: 'text', interpretation: 'plain', maxLength: REPORT_DETAILS_MAX },
+    { name: 'resolved', storage: 'number', interpretation: { kind: 'boolean' } },
   ],
   permissions: {
     viewer: { read: false, create: true, update: false, delete: false, writableFields: reportFields },

@@ -24,6 +24,7 @@ import { runJob } from './src/jobs.js'
 import { schemas } from './src/schemas.js'
 import { registerAuthRoutes, registerStaticRoutes } from './src/server/http-routes.js'
 import { registerRealtimeRoutes } from './src/server/realtime-routes.js'
+import { registerStatsRoutes } from './src/server/stats-routes.js'
 
 // Dynamic deploy reads this manifest to create the app's DO bindings.
 export const __DO_MANIFEST__ = [
@@ -124,6 +125,7 @@ app.use('*', async (c, next) => {
 // Static is last: it answers everything the routes above do not.
 registerAuthRoutes(app)
 registerRealtimeRoutes(app)
+registerStatsRoutes(app)
 registerStaticRoutes(app)
 
 // Hono registers ONE error handler (last onError wins), and its default is

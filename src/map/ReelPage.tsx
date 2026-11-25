@@ -1,7 +1,8 @@
 /** A pin's Instagram reels, one at a time, played through Instagram's embed. */
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react'
+import { count } from '@/lib/count'
 import type { Reel } from './reels'
 
 const stepClass =
@@ -11,6 +12,8 @@ export function ReelPage({ reels }: { reels: Reel[] }) {
   const [index, setIndex] = useState(0)
   const reel = reels[index]
   const address = `https://www.instagram.com/reel/${reel.code}/`
+
+  useEffect(() => count('reelViews'), [reel.code])
 
   return (
     <>

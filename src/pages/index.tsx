@@ -18,6 +18,7 @@ import { usesAccount } from '../account/remembered'
 import { SOURCE_URL } from '../constants'
 import { SignInButton } from '../account/SignInButton'
 import { Seo } from '../components/Seo'
+import { count } from '@/lib/count'
 import { readStored, readStoredJson, writeStored } from '@/lib/storage'
 import { cn } from '@/lib/utils'
 import { visiblePins, type Focus } from '../map/filter'
@@ -90,9 +91,13 @@ export default function Landing() {
     if (savedWidth) setSidebarWidth(clampSidebarWidth(savedWidth))
     setAccountLoaded(usesAccount())
     setMounted(true)
+    count('visits')
   }, [])
 
   const selectedPinId = selection?.kind === 'pin' ? selection.pin.id : null
+  useEffect(() => {
+    if (selectedPinId) count('pinOpens')
+  }, [selectedPinId])
   useEffect(() => {
     if (!mounted) return
     const url = new URL(window.location.href)
