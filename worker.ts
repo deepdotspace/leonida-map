@@ -22,6 +22,7 @@ import type { DOBindings, DOManifest, Job, JobContext } from 'deepspace/worker'
 import { tasks as cronTasks, runTask as runCronTask } from './src/cron.js'
 import { runJob } from './src/jobs.js'
 import { schemas } from './src/schemas.js'
+import { registerCommentRoutes } from './src/server/comment-routes.js'
 import { registerAuthRoutes, registerStaticRoutes } from './src/server/http-routes.js'
 import { registerRealtimeRoutes } from './src/server/realtime-routes.js'
 import { registerStatsRoutes } from './src/server/stats-routes.js'
@@ -110,7 +111,8 @@ export interface Env extends DOBindings<typeof __DO_MANIFEST__> {
   ALLOW_DEBUG_ROUTES?: string
 }
 
-export type AppContext = { Bindings: Env }
+/** `userId` is set by the routes that need a signed-in visitor. */
+export type AppContext = { Bindings: Env; Variables: { userId: string } }
 
 const app = new Hono<AppContext>()
 app.use('/api/*', cors())
@@ -126,6 +128,7 @@ app.use('*', async (c, next) => {
 registerAuthRoutes(app)
 registerRealtimeRoutes(app)
 registerStatsRoutes(app)
+registerCommentRoutes(app)
 registerStaticRoutes(app)
 
 // Hono registers ONE error handler (last onError wins), and its default is

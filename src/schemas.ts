@@ -13,6 +13,7 @@ import { settingsSchema } from './schemas/admin-schema'
 import { mapSavesSchema } from './schemas/map-saves-schema'
 import { reportsSchema } from './schemas/reports-schema'
 import { dailyCountsSchema } from './schemas/daily-counts-schema'
+import { commentsSchema } from './schemas/comments-schema'
 
 export const schemas: CollectionSchema[] = [
   usersSchema,
@@ -20,4 +21,5 @@ export const schemas: CollectionSchema[] = [
   mapSavesSchema,
   reportsSchema,
   dailyCountsSchema,
+  commentsSchema,
 ]

@@ -18,4 +18,10 @@ test.describe('API tests', () => {
     expect((await request.get('/api/admin/stats')).status()).toBe(401)
     expect((await request.post('/api/admin/reports/x', { data: { resolved: true } })).status()).toBe(401)
   })
+
+  test('comments are read without an account and posted only with one', async ({ request }) => {
+    expect(await (await request.get('/api/comments/bank-001')).json()).toBeInstanceOf(Array)
+    expect((await request.post('/api/comments/bank-001', { data: { text: 'hello' } })).status()).toBe(401)
+    expect((await request.delete('/api/comments/bank-001/x')).status()).toBe(401)
+  })
 })

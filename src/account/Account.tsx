@@ -10,6 +10,7 @@ import { useEffect } from 'react'
 import {
   AuthOverlay,
   DeepSpaceAuthProvider,
+  getAuthToken,
   RecordProvider,
   RecordScope,
   signOut,
@@ -30,6 +31,7 @@ import {
   useToast,
 } from '@/components/ui'
 import { SCOPE_ID } from '../constants'
+import type { GetToken } from '../map/CommentsPanel'
 import { mapButtonClass } from '../map/map-button'
 import type { Pin } from '../map/pins'
 import { forgetSavedData } from '../map/user-data'
@@ -45,6 +47,8 @@ interface AccountProps {
   /** The pin a problem is being reported on, if the report dialog is open. */
   reportPin: Pin | null
   onReportClose: () => void
+  /** Told how to get the visitor's token once they are signed in, and null when they are not. */
+  onSession: (getToken: GetToken | null) => void
 }
 
 export default function Account(props: AccountProps) {
@@ -55,13 +59,17 @@ export default function Account(props: AccountProps) {
   )
 }
 
-function AccountBody({ signInOpen, onSignInOpenChange, reportPin, onReportClose }: AccountProps) {
+function AccountBody({ signInOpen, onSignInOpenChange, reportPin, onReportClose, onSession }: AccountProps) {
   const { isLoaded, isSignedIn } = useAuthStatus()
   const { error, warning } = useToast()
 
   useEffect(() => {
     if (isLoaded) rememberAccount(isSignedIn || signInOpen)
   }, [isLoaded, isSignedIn, signInOpen])
+
+  useEffect(() => {
+    onSession(isSignedIn ? getAuthToken : null)
+  }, [isSignedIn, onSession])
 
   useEffect(() => {
     if (isSignedIn && signInOpen) onSignInOpenChange(false)

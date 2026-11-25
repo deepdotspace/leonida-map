@@ -8,7 +8,7 @@
  */
 
 import { useState } from 'react'
-import { ArrowLeft, ArrowRight, Check, ChevronLeft, ChevronRight, Clapperboard, ExternalLink, Flag, Link2, NotebookPen, Star } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Check, ChevronLeft, ChevronRight, Clapperboard, ExternalLink, Flag, Link2, MessageCircle, NotebookPen, Star } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { categoryIcon } from './category-icons'
 import { IconBadge } from './IconBadge'
@@ -55,9 +55,13 @@ interface PinCardProps {
   /** Open another pin and move the map to it. */
   onGoTo: (pin: Pin) => void
   onReport: (pin: Pin) => void
+  commentCount: number
+  commentsOpen: boolean
+  /** Show or hide the comments panel. */
+  onComments: () => void
 }
 
-export function PinCard({ pin, userData, onGoTo, onReport }: PinCardProps) {
+export function PinCard({ pin, userData, onGoTo, onReport, commentCount, commentsOpen, onComments }: PinCardProps) {
   const category = categoryById.get(pin.category)!
   const Icon = categoryIcon(category)
   const { prose, fields } = parseDescription(pin.description)
@@ -220,6 +224,10 @@ export function PinCard({ pin, userData, onGoTo, onReport }: PinCardProps) {
         <footer className="flex items-center justify-between gap-3 border-t border-border pt-2.5">
           <div className="flex items-center gap-4">
             <CopyLinkButton />
+            <button type="button" data-testid="pin-comments" aria-expanded={commentsOpen} onClick={onComments} className={footerLinkClass}>
+              <MessageCircle size={14} />
+              {commentCount === 0 ? 'Comments' : commentCount === 1 ? '1 comment' : `${commentCount} comments`}
+            </button>
             <button type="button" data-testid="pin-report" onClick={() => onReport(pin)} className={footerLinkClass}>
               <Flag size={14} />
               Report

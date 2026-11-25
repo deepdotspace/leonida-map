@@ -21,6 +21,7 @@ import { Seo } from '../components/Seo'
 import { count } from '@/lib/count'
 import { readStored, readStoredJson, writeStored } from '@/lib/storage'
 import { cn } from '@/lib/utils'
+import { CommentsPanel, type GetToken } from '../map/CommentsPanel'
 import { visiblePins, type Focus } from '../map/filter'
 import { FullscreenButton } from '../map/FullscreenButton'
 import { mapButtonClass } from '../map/map-button'
@@ -42,6 +43,8 @@ const Account = lazy(() => import('../account/Account'))
 const HIDDEN_CATEGORIES_KEY = 'leonida-map:hidden-categories'
 const HIDE_FOUND_KEY = 'leonida-map:hide-found'
 const SIDEBAR_WIDTH_KEY = 'leonida-map:sidebar-width'
+const COMMENTS_WIDTH_KEY = 'leonida-map:comments-width'
+const DEFAULT_COMMENTS_WIDTH = 360
 
 function storedEnabledCategories(): string[] {
   const hidden = readStoredJson(HIDDEN_CATEGORIES_KEY)
@@ -73,6 +76,11 @@ export default function Landing() {
   const [accountLoaded, setAccountLoaded] = useState(false)
   const [signInOpen, setSignInOpen] = useState(false)
   const [reportPin, setReportPin] = useState<Pin | null>(null)
+  const [getToken, setGetToken] = useState<GetToken | null>(null)
+  /** The comments panel stays hidden until the visitor asks for it from a place's card. */
+  const [commentsOpen, setCommentsOpen] = useState(false)
+  const [commentCount, setCommentCount] = useState(0)
+  const [commentsWidth, setCommentsWidth] = useState(DEFAULT_COMMENTS_WIDTH)
   const userData = useUserData()
 
   useEffect(() => {
@@ -89,6 +97,8 @@ export default function Landing() {
     setHideFound(readStored(HIDE_FOUND_KEY) === '1')
     const savedWidth = Number(readStored(SIDEBAR_WIDTH_KEY))
     if (savedWidth) setSidebarWidth(clampSidebarWidth(savedWidth))
+    const savedCommentsWidth = Number(readStored(COMMENTS_WIDTH_KEY))
+    if (savedCommentsWidth) setCommentsWidth(clampSidebarWidth(savedCommentsWidth))
     setAccountLoaded(usesAccount())
     setMounted(true)
     count('visits')
@@ -174,6 +184,8 @@ export default function Landing() {
     setReportPin(pin)
   }
   const closeReport = useCallback(() => setReportPin(null), [])
+  /** A function is stored, so it is wrapped to keep React from calling it. */
+  const changeSession = useCallback((next: GetToken | null) => setGetToken(() => next), [])
 
   const closeSidebar = () => {
     setDrawerOpen(false)
@@ -203,7 +215,12 @@ export default function Landing() {
             !panelOpen && 'md:ml-[calc(var(--sidebar-width)*-1)]',
           )}
         >
-          <SidebarResizeHandle width={sidebarWidth} onWidthChange={setSidebarWidth} onWidthCommit={(width) => writeStored(SIDEBAR_WIDTH_KEY, String(width))} />
+          <SidebarResizeHandle
+            side="left"
+            defaultWidth={DEFAULT_SIDEBAR_WIDTH}
+            label="Resize sidebar"
+            testId="sidebar-resize"
+            width={sidebarWidth} onWidthChange={setSidebarWidth} onWidthCommit={(width) => writeStored(SIDEBAR_WIDTH_KEY, String(width))} />
           <MapSidebar
             enabledCategories={enabledCategories}
             shownPinCount={shownPins.length}
@@ -241,7 +258,7 @@ export default function Landing() {
                 onPlaceMarker={placingMarker ? placeMarker : null}
               >
                 {selection?.kind === 'pin' && (
-                  <PinCard key={selection.pin.id} pin={selection.pin} userData={userData} onGoTo={goToPin} onReport={reportProblem} />
+                  <PinCard key={selection.pin.id} pin={selection.pin} userData={userData} onGoTo={goToPin} onReport={reportProblem} commentCount={commentCount} commentsOpen={commentsOpen} onComments={() => setCommentsOpen((open) => !open)} />
                 )}
                 {selectedMarker && <MarkerCard key={selectedMarker.id} marker={selectedMarker} />}
               </MapCanvas>
@@ -269,7 +286,7 @@ export default function Landing() {
             <FullscreenButton />
             {accountLoaded ? (
               <Suspense fallback={<SignInButton />}>
-                <Account signInOpen={signInOpen} onSignInOpenChange={setSignInOpen} reportPin={reportPin} onReportClose={closeReport} />
+                <Account signInOpen={signInOpen} onSignInOpenChange={setSignInOpen} reportPin={reportPin} onReportClose={closeReport} onSession={changeSession} />
               </Suspense>
             ) : (
               <SignInButton onClick={openSignIn} />
@@ -305,6 +322,31 @@ export default function Landing() {
             </a>
           </p>
         </main>
+
+        {/* The left sidebar mirrored: beside the map on wide screens, a drawer over it on narrow ones. */}
+        {selection?.kind === 'pin' && (
+          <aside
+            inert={!commentsOpen}
+            style={{ '--comments-width': `${commentsWidth}px` } as CSSProperties}
+            className={cn(
+              'absolute inset-y-0 right-0 z-20 w-[var(--comments-width)] max-w-[90vw] shrink-0 transition-[translate,margin-right,visibility] duration-300 ease-out motion-reduce:transition-none',
+              'lg:relative lg:translate-x-0 lg:shadow-none',
+              commentsOpen ? 'translate-x-0 shadow-2xl' : 'max-lg:invisible translate-x-full',
+              !commentsOpen && 'lg:mr-[calc(var(--comments-width)*-1)]',
+            )}
+          >
+            <SidebarResizeHandle
+              side="right"
+              defaultWidth={DEFAULT_COMMENTS_WIDTH}
+              label="Resize comments"
+              testId="comments-resize"
+              width={commentsWidth}
+              onWidthChange={setCommentsWidth}
+              onWidthCommit={(width) => writeStored(COMMENTS_WIDTH_KEY, String(width))}
+            />
+            <CommentsPanel key={selection.pin.id} pin={selection.pin} getToken={getToken} onSignIn={openSignIn} onClose={() => setCommentsOpen(false)} onCountChange={setCommentCount} />
+          </aside>
+        )}
       </div>
     </>
   )
