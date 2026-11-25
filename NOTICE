@@ -1,0 +1,25 @@
+Leonida Map uses material from other people. If you reuse this project, keep
+these credits.
+
+Map tiles
+  Source: GTADB (https://map.gtadb.org, https://github.com/rolux/gtadb.org)
+  Licence: Creative Commons Attribution 4.0 International
+           https://creativecommons.org/licenses/by/4.0/
+  Changes: the original tiles were recombined into 512 px tiles at zoom
+           levels 1 to 7 by scripts/fetch-tiles.mjs. The tiles are not part
+           of this repository; that script downloads them.
+
+Place data
+  Source: GTA Base (https://www.gtabase.com) and its contributors.
+  The names, positions, descriptions and pictures of places in
+  src/map/data/ come from there and remain the property of their authors.
+
+Reels
+  Instagram reels are shown through Instagram's own embeds and belong to the
+  people who posted them. The handles in src/map/data/ credit who found a
+  place.
+
+Grand Theft Auto
+  Grand Theft Auto, GTA 6 and Leonida are trademarks of Take-Two Interactive
+  Software and Rockstar Games. This is a fan project and is not affiliated
+  with or endorsed by either company.

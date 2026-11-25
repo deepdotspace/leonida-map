@@ -1,0 +1,25 @@
+node_modules
+dist
+.wrangler
+.wrangler.deepspace.*.toml
+.dev.vars
+.dev.vars.*
+.deepspace
+.worker-bundle.js
+*.tgz
+test-results/
+playwright-report/
+src/router.ts
+src/modals.tsx
+.claude/launch.json
+.claude/worktrees
+
+# Map tiles are fetched with `npm run tiles` (7,844 files, 72 MB).
+public/tiles/
+
+# Working data of the reels pipeline and local notes.
+reels-pipeline/data/
+reels-pipeline/dl/
+reels-pipeline/frames/
+reels-pipeline/work/
+STATE.md

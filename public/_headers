@@ -1,0 +1,17 @@
+/*
+  Content-Security-Policy: object-src 'none'; base-uri 'self'; frame-ancestors 'none'
+  Permissions-Policy: document-domain=()
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# MapLibre's web worker must arrive as JavaScript, or browsers refuse to run it
+# and the map draws no pins.
+/assets/map-worker-*
+  Content-Type: text/javascript
+
+/tiles/*
+  Cache-Control: public, max-age=604800

@@ -1,0 +1,898 @@
+{
+ "groups": [
+  {
+   "id": "instagram-finds",
+   "name": "Instagram Finds",
+   "color": "#e1306c"
+  },
+  {
+   "id": "properties",
+   "name": "Personal",
+   "color": "#00897b"
+  },
+  {
+   "id": "robberies",
+   "name": "Robberies",
+   "color": "#2e7d32"
+  },
+  {
+   "id": "activities",
+   "name": "Activities",
+   "color": "#7b1fa2"
+  },
+  {
+   "id": "collectibles",
+   "name": "Collectibles",
+   "color": "#ffd600"
+  },
+  {
+   "id": "collectible-cards",
+   "name": "Collectible Cards",
+   "color": "#ff5fa2"
+  },
+  {
+   "id": "vehicles",
+   "name": "Vehicles",
+   "color": "#1565c0"
+  },
+  {
+   "id": "weapons",
+   "name": "Weapons",
+   "color": "#546e7a"
+  },
+  {
+   "id": "style",
+   "name": "Style",
+   "color": "#ad1457"
+  },
+  {
+   "id": "food-drink",
+   "name": "Food & Drink",
+   "color": "#795548"
+  },
+  {
+   "id": "local-places",
+   "name": "Local Places",
+   "color": "#ef6c00"
+  }
+ ],
+ "categories": [
+  {
+   "id": "bank",
+   "name": "Banks",
+   "group": "robberies",
+   "icon": "game-blip-bank",
+   "trackable": true,
+   "closed": true
+  },
+  {
+   "id": "fence",
+   "name": "Fences",
+   "group": "robberies",
+   "icon": "game-blip-fence",
+   "trackable": true
+  },
+  {
+   "id": "gang-operation",
+   "name": "Illegal Operations",
+   "group": "robberies",
+   "icon": "game-blip-gang-operation",
+   "trackable": true
+  },
+  {
+   "id": "payday-loan",
+   "name": "Payday Loans",
+   "group": "robberies",
+   "icon": "game-blip-payday-loan",
+   "trackable": true,
+   "closed": true
+  },
+  {
+   "id": "safe",
+   "name": "Safes",
+   "group": "robberies",
+   "icon": "game-blip-safe",
+   "trackable": true
+  },
+  {
+   "id": "smash-n-grab",
+   "name": "Smash 'n' Grabs",
+   "group": "robberies",
+   "icon": "game-blip-smash-n-grab",
+   "trackable": true,
+   "closed": true
+  },
+  {
+   "id": "towable-atm",
+   "name": "Towable ATMs",
+   "group": "robberies",
+   "icon": "game-blip-towable-atm",
+   "trackable": true,
+   "closed": true
+  },
+  {
+   "id": "mural",
+   "name": "1010 Murals",
+   "group": "collectibles",
+   "icon": "game-blip-mural",
+   "trackable": true,
+   "closed": true
+  },
+  {
+   "id": "ahol-street-art",
+   "name": "Ahol Street Art",
+   "group": "collectibles",
+   "icon": "palette",
+   "trackable": true,
+   "color": "#e84393"
+  },
+  {
+   "id": "base-jump",
+   "name": "BASE Jumps",
+   "group": "collectibles",
+   "icon": "game-blip-base-jump",
+   "trackable": true,
+   "closed": true
+  },
+  {
+   "id": "book-swap",
+   "name": "Book Swaps",
+   "group": "collectibles",
+   "icon": "game-blip-book-swap",
+   "trackable": true,
+   "closed": true
+  },
+  {
+   "id": "comics",
+   "name": "Comics",
+   "group": "collectibles",
+   "icon": "auto_stories",
+   "trackable": true
+  },
+  {
+   "id": "hidden-package",
+   "name": "Hidden Package",
+   "slug": "hidden-packages",
+   "group": "collectibles",
+   "icon": "game-blip-hidden-package",
+   "trackable": true,
+   "found_style": "fade"
+  },
+  {
+   "id": "easter-egg",
+   "name": "Easter Eggs",
+   "slug": "easter-eggs",
+   "group": "collectibles",
+   "icon": "travel_explore",
+   "trackable": true,
+   "found_style": "fade",
+   "color": "#6c5ce7"
+  },
+  {
+   "id": "instagram-find",
+   "name": "Instagram Finds",
+   "slug": "instagram-finds",
+   "group": "instagram-finds",
+   "blurb": "Only on this map",
+   "icon": "video",
+   "trackable": true,
+   "found_style": "fade",
+   "color": "#e1306c"
+  },
+  {
+   "id": "knife-flight",
+   "name": "Knife Flights",
+   "group": "collectibles",
+   "icon": "game-blip-knife-flight",
+   "trackable": true,
+   "closed": true
+  },
+  {
+   "id": "luxury-watch",
+   "name": "Luxury Watches",
+   "group": "collectibles",
+   "icon": "watch",
+   "trackable": true,
+   "color": "#d4a017"
+  },
+  {
+   "id": "magazine",
+   "name": "Magazines & Books",
+   "group": "collectibles",
+   "icon": "game-blip-magazine",
+   "trackable": true
+  },
+  {
+   "id": "meditation",
+   "name": "Meditations",
+   "group": "collectibles",
+   "icon": "stars",
+   "trackable": true,
+   "color": "#8e44ad"
+  },
+  {
+   "id": "message-bottle",
+   "name": "Messages in a Bottle",
+   "group": "collectibles",
+   "icon": "water_bottle",
+   "trackable": true
+  },
+  {
+   "id": "meteorite",
+   "name": "Meteorites",
+   "group": "collectibles",
+   "icon": "flare",
+   "trackable": true
+  },
+  {
+   "id": "stunt-jump",
+   "name": "Stunt Jumps",
+   "slug": "stunt-jumps",
+   "group": "collectibles",
+   "icon": "game-blip-stunt-jump",
+   "trackable": true,
+   "found_style": "fade",
+   "closed": true
+  },
+  {
+   "id": "treasure",
+   "name": "Treasures",
+   "group": "collectibles",
+   "icon": "game-blip-treasure",
+   "trackable": true
+  },
+  {
+   "id": "under-the-bridge",
+   "name": "Under the Bridge",
+   "group": "collectibles",
+   "icon": "game-blip-under-the-bridge",
+   "trackable": true,
+   "closed": true
+  },
+  {
+   "id": "playlist",
+   "name": "Unique Playlists",
+   "group": "collectibles",
+   "icon": "game-blip-playlist",
+   "trackable": true,
+   "closed": true
+  },
+  {
+   "id": "waink-curiosity",
+   "name": "Waink: Curiosities",
+   "group": "collectibles",
+   "icon": "game-blip-waink-curiosity",
+   "trackable": true
+  },
+  {
+   "id": "waink-landmark",
+   "name": "Waink: Landmarks",
+   "group": "collectibles",
+   "icon": "game-blip-waink-landmark",
+   "trackable": true,
+   "closed": true
+  },
+  {
+   "id": "waink-sculpture",
+   "name": "Waink: Sculptures",
+   "group": "collectibles",
+   "icon": "game-blip-waink-sculpture",
+   "trackable": true,
+   "closed": true
+  },
+  {
+   "id": "yellow-loot-box",
+   "name": "Yellow Loot Boxes",
+   "group": "collectibles",
+   "icon": "inventory_2",
+   "trackable": true,
+   "color": "#f2c200"
+  },
+  {
+   "id": "scoop-container",
+   "name": "SCOOP Containers",
+   "group": "collectibles",
+   "icon": "package_2",
+   "trackable": true,
+   "color": "#d98e04"
+  },
+  {
+   "id": "card-americas-next-top-hooker",
+   "name": "America's Next Top Hooker",
+   "group": "collectible-cards",
+   "icon": "game-blip-collectible-card",
+   "trackable": true,
+   "multi_spawn": true
+  },
+  {
+   "id": "card-backyard-wrestling",
+   "name": "Backyard Wrestling",
+   "group": "collectible-cards",
+   "icon": "game-blip-collectible-card",
+   "trackable": true,
+   "multi_spawn": true
+  },
+  {
+   "id": "card-delights",
+   "name": "Delights Dancers",
+   "group": "collectible-cards",
+   "icon": "game-blip-collectible-card",
+   "trackable": true,
+   "multi_spawn": true
+  },
+  {
+   "id": "card-ed-comics",
+   "name": "Ed Comics Universe",
+   "group": "collectible-cards",
+   "icon": "game-blip-collectible-card",
+   "trackable": true,
+   "multi_spawn": true
+  },
+  {
+   "id": "card-jack-of-hearts",
+   "name": "Jack of Hearts Dancers",
+   "group": "collectible-cards",
+   "icon": "game-blip-collectible-card",
+   "trackable": true,
+   "multi_spawn": true
+  },
+  {
+   "id": "card-liberty-city-penetrators",
+   "name": "Liberty City Penetrators",
+   "group": "collectible-cards",
+   "icon": "game-blip-collectible-card",
+   "trackable": true,
+   "multi_spawn": true
+  },
+  {
+   "id": "card-liberty-city-swingers",
+   "name": "Liberty City Swingers",
+   "group": "collectible-cards",
+   "icon": "game-blip-collectible-card",
+   "trackable": true,
+   "multi_spawn": true
+  },
+  {
+   "id": "card-liberty-city-wrath",
+   "name": "Liberty City Wrath",
+   "group": "collectible-cards",
+   "icon": "game-blip-collectible-card",
+   "trackable": true,
+   "multi_spawn": true
+  },
+  {
+   "id": "card-los-santos-corkers",
+   "name": "Los Santos Corkers",
+   "group": "collectible-cards",
+   "icon": "game-blip-collectible-card",
+   "trackable": true,
+   "multi_spawn": true
+  },
+  {
+   "id": "card-los-santos-panic",
+   "name": "Los Santos Panic",
+   "group": "collectible-cards",
+   "icon": "game-blip-collectible-card",
+   "trackable": true,
+   "multi_spawn": true
+  },
+  {
+   "id": "card-los-santos-pounders",
+   "name": "Los Santos Pounders",
+   "group": "collectible-cards",
+   "icon": "game-blip-collectible-card",
+   "trackable": true,
+   "multi_spawn": true
+  },
+  {
+   "id": "card-nine1nine",
+   "name": "Nine1Nine Dancers",
+   "group": "collectible-cards",
+   "icon": "game-blip-collectible-card",
+   "trackable": true,
+   "multi_spawn": true
+  },
+  {
+   "id": "card-right-wing",
+   "name": "Right Wing: America's Hero",
+   "group": "collectible-cards",
+   "icon": "game-blip-collectible-card",
+   "trackable": true,
+   "multi_spawn": true
+  },
+  {
+   "id": "card-legends-of-ratface",
+   "name": "The Legends of Ratface",
+   "group": "collectible-cards",
+   "icon": "game-blip-collectible-card",
+   "trackable": true,
+   "multi_spawn": true
+  },
+  {
+   "id": "card-vice-city-club-de-futbol",
+   "name": "Vice City Club De Fútbol",
+   "group": "collectible-cards",
+   "icon": "game-blip-collectible-card",
+   "trackable": true,
+   "multi_spawn": true
+  },
+  {
+   "id": "card-vice-city-flamingos",
+   "name": "Vice City Flamingos",
+   "group": "collectible-cards",
+   "icon": "game-blip-collectible-card",
+   "trackable": true,
+   "multi_spawn": true
+  },
+  {
+   "id": "card-vice-city-manatees",
+   "name": "Vice City Manatees",
+   "group": "collectible-cards",
+   "icon": "game-blip-collectible-card",
+   "trackable": true,
+   "multi_spawn": true
+  },
+  {
+   "id": "card-vice-city-narcos",
+   "name": "Vice City Narcos",
+   "group": "collectible-cards",
+   "icon": "game-blip-collectible-card",
+   "trackable": true,
+   "multi_spawn": true
+  },
+  {
+   "id": "collectible-card",
+   "name": "Other Cards",
+   "group": "collectible-cards",
+   "icon": "game-blip-collectible-card",
+   "trackable": true,
+   "multi_spawn": true
+  },
+  {
+   "id": "arcade",
+   "name": "Arcade Machines",
+   "group": "activities",
+   "icon": "game-blip-arcade",
+   "trackable": true,
+   "closed": true
+  },
+  {
+   "id": "basketball",
+   "name": "Basketball",
+   "group": "activities",
+   "icon": "game-blip-basketball",
+   "trackable": true,
+   "closed": true
+  },
+  {
+   "id": "car-meet",
+   "name": "Car Meet",
+   "group": "activities",
+   "icon": "traffic_jam",
+   "trackable": true
+  },
+  {
+   "id": "darts",
+   "name": "Darts",
+   "group": "activities",
+   "icon": "dart",
+   "trackable": true
+  },
+  {
+   "id": "drone-race",
+   "name": "Drone Races",
+   "group": "activities",
+   "icon": "game-blip-drone-race",
+   "trackable": true,
+   "closed": true
+  },
+  {
+   "id": "fishing",
+   "name": "Fishing",
+   "group": "activities",
+   "icon": "game-blip-fishing",
+   "trackable": true,
+   "closed": true
+  },
+  {
+   "id": "gang-compound",
+   "name": "Gang Compound",
+   "group": "activities",
+   "icon": "fort",
+   "trackable": true
+  },
+  {
+   "id": "golf",
+   "name": "Golf",
+   "group": "activities",
+   "icon": "game-blip-golf",
+   "trackable": true
+  },
+  {
+   "id": "gym",
+   "name": "Gym",
+   "group": "activities",
+   "icon": "game-blip-gym",
+   "trackable": true,
+   "closed": true
+  },
+  {
+   "id": "hunting",
+   "name": "Hunting",
+   "group": "activities",
+   "icon": "game-blip-hunting",
+   "trackable": true
+  },
+  {
+   "id": "mini-golf",
+   "name": "Mini Golf",
+   "group": "activities",
+   "icon": "game-blip-mini-golf",
+   "trackable": true
+  },
+  {
+   "id": "parachuting",
+   "name": "Parachuting",
+   "group": "activities",
+   "icon": "paragliding",
+   "trackable": true
+  },
+  {
+   "id": "pool",
+   "name": "Pool",
+   "group": "activities",
+   "icon": "game-blip-pool",
+   "trackable": true,
+   "closed": true
+  },
+  {
+   "id": "race",
+   "name": "Races",
+   "group": "activities",
+   "icon": "game-blip-race",
+   "trackable": true
+  },
+  {
+   "id": "random-event",
+   "name": "Random Events",
+   "group": "activities",
+   "icon": "question_mark",
+   "trackable": true
+  },
+  {
+   "id": "shooting-range",
+   "name": "Shooting Range",
+   "group": "activities",
+   "icon": "game-blip-shooting-range",
+   "trackable": true,
+   "closed": true
+  },
+  {
+   "id": "garage",
+   "name": "Garages",
+   "slug": "garages",
+   "group": "properties",
+   "icon": "game-blip-garage",
+   "trackable": true,
+   "closed": true
+  },
+  {
+   "id": "helipad",
+   "name": "Helipads",
+   "slug": "helipads",
+   "group": "local-places",
+   "icon": "game-blip-helipad",
+   "trackable": true
+  },
+  {
+   "id": "safehouse",
+   "name": "Safehouses",
+   "slug": "safehouses",
+   "group": "properties",
+   "icon": "game-blip-safehouse",
+   "trackable": true
+  },
+  {
+   "id": "bus-stop",
+   "name": "Bus Stops",
+   "group": "vehicles",
+   "icon": "game-blip-bus-stop",
+   "trackable": false,
+   "hidden_default": true,
+   "closed": true
+  },
+  {
+   "id": "car-wash",
+   "name": "Car Washes",
+   "group": "vehicles",
+   "icon": "game-blip-car-wash",
+   "trackable": true,
+   "closed": true
+  },
+  {
+   "id": "ev-charger",
+   "name": "Electric Chargers",
+   "group": "vehicles",
+   "icon": "game-blip-ev-charger",
+   "trackable": false,
+   "hidden_default": true,
+   "closed": true
+  },
+  {
+   "id": "gas-station",
+   "name": "Gas Stations",
+   "group": "vehicles",
+   "icon": "game-blip-gas-station",
+   "trackable": false,
+   "hidden_default": true
+  },
+  {
+   "id": "vehicle-mod-shop",
+   "name": "Mod Shops",
+   "group": "vehicles",
+   "icon": "game-blip-mod-shop",
+   "trackable": true,
+   "closed": true
+  },
+  {
+   "id": "pay-n-spray",
+   "name": "Pay 'n' Sprays",
+   "group": "vehicles",
+   "icon": "game-blip-pay-n-spray",
+   "trackable": true,
+   "closed": true
+  },
+  {
+   "id": "public-transport",
+   "name": "Train & Metro Stations",
+   "group": "vehicles",
+   "icon": "game-blip-train-station",
+   "trackable": true
+  },
+  {
+   "id": "airport",
+   "name": "Airports & Airfields",
+   "slug": "airports",
+   "group": "vehicles",
+   "icon": "game-blip-hangar",
+   "trackable": true
+  },
+  {
+   "id": "ferry",
+   "name": "Ferry Terminals",
+   "slug": "ferry-terminals",
+   "group": "vehicles",
+   "icon": "game-blip-marina",
+   "trackable": true
+  },
+  {
+   "id": "standout-vehicle",
+   "name": "Standout Vehicles",
+   "group": "vehicles",
+   "icon": "game-blip-standout-vehicle",
+   "trackable": true,
+   "multi_spawn": true
+  },
+  {
+   "id": "vehicle-dealer",
+   "name": "Vehicle Dealer",
+   "group": "vehicles",
+   "icon": "game-blip-vehicle-dealer",
+   "trackable": true
+  },
+  {
+   "id": "vehicle-rental",
+   "name": "Vehicle Rentals",
+   "group": "vehicles",
+   "icon": "game-blip-vehicle-rental",
+   "trackable": true
+  },
+  {
+   "id": "vehicle-request",
+   "name": "Vehicle Requests",
+   "group": "vehicles",
+   "icon": "game-blip-vehicle-request",
+   "trackable": true,
+   "closed": true
+  },
+  {
+   "id": "vehicle-spawn",
+   "name": "Vehicle Spawns",
+   "group": "vehicles",
+   "icon": "game-blip-vehicle-spawn",
+   "trackable": true
+  },
+  {
+   "id": "ammu-nation",
+   "name": "Ammu-Nations",
+   "group": "weapons",
+   "icon": "game-blip-ammu-nation",
+   "trackable": true,
+   "closed": true
+  },
+  {
+   "id": "armor-spawn",
+   "name": "Armor Pickups",
+   "group": "weapons",
+   "icon": "kevlar-vest",
+   "trackable": true
+  },
+  {
+   "id": "weapon-spawn",
+   "name": "Weapon Pickups",
+   "group": "weapons",
+   "icon": "game-blip-weapon-spawn",
+   "trackable": true
+  },
+  {
+   "id": "unique-weapon",
+   "name": "Unique Weapons",
+   "group": "weapons",
+   "icon": "crossed-pistols",
+   "trackable": true,
+   "color": "#c9a227"
+  },
+  {
+   "id": "clothing",
+   "name": "Clothing",
+   "group": "style",
+   "icon": "game-blip-clothing",
+   "trackable": true
+  },
+  {
+   "id": "electronics",
+   "name": "Electronics",
+   "group": "style",
+   "icon": "game-blip-electronics",
+   "trackable": true,
+   "closed": true
+  },
+  {
+   "id": "footwear",
+   "name": "Footwear",
+   "group": "style",
+   "icon": "game-blip-footwear",
+   "trackable": true,
+   "closed": true
+  },
+  {
+   "id": "haircut",
+   "name": "Hair & Beauty",
+   "group": "style",
+   "icon": "game-blip-haircut",
+   "trackable": true,
+   "closed": true
+  },
+  {
+   "id": "jewelry-store",
+   "name": "Jewelry Store",
+   "group": "style",
+   "icon": "game-blip-jewelry-store",
+   "trackable": true
+  },
+  {
+   "id": "phone-store",
+   "name": "Phone Store",
+   "group": "style",
+   "icon": "smartphone",
+   "trackable": true
+  },
+  {
+   "id": "tattoo",
+   "name": "Tattoos",
+   "group": "style",
+   "icon": "game-blip-tattoo",
+   "trackable": true,
+   "closed": true
+  },
+  {
+   "id": "bar",
+   "name": "Bars",
+   "group": "food-drink",
+   "icon": "game-blip-bar",
+   "trackable": true
+  },
+  {
+   "id": "cafe-takeout",
+   "name": "Cafes & Takeout",
+   "group": "food-drink",
+   "icon": "game-blip-cafe",
+   "trackable": true
+  },
+  {
+   "id": "convenience-store",
+   "name": "Convenience Stores",
+   "group": "food-drink",
+   "icon": "game-blip-convenience-store",
+   "trackable": true
+  },
+  {
+   "id": "food-and-drink",
+   "name": "Fast Food",
+   "group": "food-drink",
+   "icon": "game-blip-fast-food",
+   "trackable": true
+  },
+  {
+   "id": "liquor-store",
+   "name": "Liquor Stores",
+   "group": "food-drink",
+   "icon": "game-blip-liquor-store",
+   "trackable": true,
+   "closed": true
+  },
+  {
+   "id": "street-food",
+   "name": "Street Food",
+   "group": "food-drink",
+   "icon": "game-blip-street-food",
+   "trackable": true
+  },
+  {
+   "id": "atm",
+   "name": "ATMs",
+   "group": "local-places",
+   "icon": "game-blip-atm",
+   "trackable": false,
+   "hidden_default": true,
+   "closed": true
+  },
+  {
+   "id": "cinema",
+   "name": "Cinema",
+   "group": "local-places",
+   "icon": "movie",
+   "trackable": true
+  },
+  {
+   "id": "city-town",
+   "name": "Cities & Towns",
+   "group": "local-places",
+   "icon": "location_city",
+   "trackable": true
+  },
+  {
+   "id": "fire-station",
+   "name": "Fire Stations",
+   "group": "local-places",
+   "icon": "local_fire_department",
+   "trackable": true
+  },
+  {
+   "id": "hospital",
+   "name": "Hospitals",
+   "group": "local-places",
+   "icon": "local_hospital",
+   "trackable": true
+  },
+  {
+   "id": "landmark",
+   "name": "Landmarks",
+   "group": "local-places",
+   "icon": "photo_camera",
+   "trackable": true
+  },
+  {
+   "id": "marina",
+   "name": "Marinas",
+   "slug": "marinas",
+   "group": "local-places",
+   "icon": "game-blip-marina",
+   "trackable": true
+  },
+  {
+   "id": "nightclub",
+   "name": "Nightclub",
+   "group": "local-places",
+   "icon": "game-blip-nightclub",
+   "trackable": true
+  },
+  {
+   "id": "police-station",
+   "name": "Police Stations",
+   "group": "local-places",
+   "icon": "local_police",
+   "trackable": true
+  }
+ ]
+}

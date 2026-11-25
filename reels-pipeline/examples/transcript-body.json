@@ -1,0 +1,19 @@
+{
+ "actorId": "memo23/instagram-reel-transcript-scraper",
+ "input": {
+  "startUrls": [
+   {
+    "url": "https://www.instagram.com/reel/Df4OnTiPD1x/"
+   },
+   {
+    "url": "https://www.instagram.com/reel/Df-7gv1xdPX/"
+   }
+  ],
+  "maxItems": 100,
+  "includeSegments": false,
+  "maxConcurrency": 4
+ },
+ "maxTotalChargeUsd": 0.65,
+ "maxItems": 120,
+ "timeout": 3600
+}
