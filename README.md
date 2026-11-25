@@ -6,29 +6,35 @@ Live at <https://gta6.app.space>. Built on [DeepSpace](https://deep.space).
 
 This is a fan project. It is not affiliated with or endorsed by Rockstar Games or Take-Two Interactive.
 
-## Run it
-
-You need Node 22.15 or newer and a free [DeepSpace](https://deep.space) account, which provides sign-in, storage and hosting.
-
-```bash
-npm install
-npx deepspace auth login
-npx deepspace app init --new-id   # gives your copy its own app id
-npm run tiles                     # downloads the map tiles (7,844 files, 72 MB)
-npm run dev
-```
-
-The tiles are not kept in the repository. `npm run tiles` fetches them from GTADB and writes them to `public/tiles/`.
-
 ## Deploy your own copy
 
+You need Node 22.15 or newer and a free [DeepSpace](https://deep.space) account. DeepSpace provides the sign-in, the storage and the hosting, so there is nothing else to set up.
+
 ```bash
-npm run deploy
+git clone https://github.com/deepdotspace/leonida-map.git && cd leonida-map
+npm install                              # installs the DeepSpace SDK with everything else
+npx deepspace auth login                 # sign in, or create your free account
+npx deepspace app init --new-id          # makes this copy your own app
+npm run tiles                            # downloads the map artwork (7,844 files, 72 MB)
+npm run deploy                           # puts it online
 ```
 
-Your copy goes live at `https://<name>.app.space`, where `<name>` is the `name` at the top of `wrangler.toml`. Change it to a name of your own first.
+Before the last step, change `name` at the top of `wrangler.toml` to a name of your own. Your map goes live at `https://<name>.app.space`.
 
-The first deploy takes about eleven minutes, because the platform copies each of the ~7,970 tile files in turn. Later deploys only send what changed and take about a minute. `npm run deploy` loads `scripts/long-fetch.mjs`, which lets the deploy command wait that long; plain `npx deepspace deploy` gives up after four minutes.
+The first deploy takes about eleven minutes because of the map artwork. Later deploys take about a minute.
+
+### Or ask your coding agent
+
+Paste this into Claude Code, Codex or Cursor:
+
+> Clone https://github.com/deepdotspace/leonida-map, follow "Deploy your own copy" in its README, name the app `<your-name>`, and give me the live link.
+
+### Make it yours
+
+- **Run it on your computer:** `npm run dev`.
+- **Change the places:** edit the JSON files in `src/map/data/`.
+- **Charge for it:** DeepSpace has payments built in, so you can put features behind a subscription. See the [DeepSpace docs](https://docs.deep.space).
+- **Use your own domain:** `npx deepspace app domain --help`.
 
 ## Check it
 
