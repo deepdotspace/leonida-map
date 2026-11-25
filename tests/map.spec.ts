@@ -109,6 +109,8 @@ test.describe('signed in', () => {
     await reply.getByRole('button', { name: 'Delete comment' }).click()
     await confirmDelete.click()
     await expect(author.getByTestId('comment').filter({ hasText: text })).toHaveCount(0)
+    const left: Array<{ at: string }> = await (await author.request.get('/api/comments/bank-001')).json()
+    expect(left.filter((comment) => Date.now() - new Date(comment.at).getTime() < 60_000)).toEqual([])
   })
 })
 

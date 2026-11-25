@@ -110,12 +110,23 @@ export function registerCommentRoutes(app: Hono<AppContext>): void {
     const comment = await commentOn(c.env, pinId, c.req.param('id'))
     if (!comment) return c.json({ error: 'not_found' }, 404)
     if (comment.data.userId !== userId && (await resolveAppRole(c.env, userId)) !== 'admin') return c.json({ error: 'forbidden' }, 403)
-    const { recordId } = comment
-    const replies = await records<{ records: StoredRecord[] }>(c.env, 'query', { collection: 'comments', where: { pinId, parentId: recordId }, limit: 1 })
-    if (!replies) return c.json({ error: 'failed' }, 500)
-    const removed = replies.records.length
-      ? await records(c.env, 'update', { collection: 'comments', recordId, data: { deleted: true, name: '[deleted]', imageUrl: '', text: '[deleted]', upvoters: [] } })
-      : await records(c.env, 'delete', { collection: 'comments', recordId })
-    return removed ? c.body(null, 204) : c.json({ error: 'failed' }, 500)
+    const hasReplies = async (recordId: string) => {
+      const replies = await records<{ records: StoredRecord[] }>(c.env, 'query', { collection: 'comments', where: { pinId, parentId: recordId }, limit: 1 })
+      return replies ? replies.records.length > 0 : null
+    }
+    const replied = await hasReplies(comment.recordId)
+    if (replied === null) return c.json({ error: 'failed' }, 500)
+    if (replied) {
+      const shell = { deleted: true, name: '[deleted]', imageUrl: '', text: '[deleted]', upvoters: [] }
+      const saved = await records(c.env, 'update', { collection: 'comments', recordId: comment.recordId, data: shell })
+      return saved ? c.body(null, 204) : c.json({ error: 'failed' }, 500)
+    }
+    /** Remove it, and with it any deleted comment above that is left with no replies. */
+    for (let gone: StoredRecord | null = comment; gone; ) {
+      if (!(await records(c.env, 'delete', { collection: 'comments', recordId: gone.recordId }))) return c.json({ error: 'failed' }, 500)
+      const parent: StoredRecord | null = gone.data.parentId ? await commentOn(c.env, pinId, String(gone.data.parentId)) : null
+      gone = parent?.data.deleted && (await hasReplies(parent.recordId)) === false ? parent : null
+    }
+    return c.body(null, 204)
   })
 }
