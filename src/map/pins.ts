@@ -35,6 +35,10 @@ export interface Pin {
   foundBy?: string
   /** Editor who added the location. */
   addedBy?: string
+  /** What the player needs before this can be done, such as a chapter or a time of day. */
+  requires?: string
+  /** How to get or see it, in order, when it takes more than going there. */
+  steps?: string[]
 }
 
 export const groups: Group[] = categoryData.groups.map(({ id, name, color }) => ({ id, name, color }))

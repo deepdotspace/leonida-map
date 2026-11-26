@@ -13,7 +13,7 @@
  */
 
 import { lazy, Suspense, useCallback, useEffect, useMemo, useState, type CSSProperties } from 'react'
-import { MapPinPlus, PanelLeftOpen } from 'lucide-react'
+import { MapPinPlus, PanelLeftOpen, X } from 'lucide-react'
 import { usesAccount } from '../account/remembered'
 import { SOURCE_URL } from '../constants'
 import { SignInButton } from '../account/SignInButton'
@@ -79,6 +79,7 @@ export default function Landing() {
   const [getToken, setGetToken] = useState<GetToken | null>(null)
   /** The comments panel stays hidden until the visitor asks for it from a place's card. */
   const [commentsOpen, setCommentsOpen] = useState(false)
+  const [creditHidden, setCreditHidden] = useState(false)
   const [commentCount, setCommentCount] = useState(0)
   const [commentsWidth, setCommentsWidth] = useState(DEFAULT_COMMENTS_WIDTH)
   const userData = useUserData()
@@ -309,18 +310,30 @@ export default function Landing() {
             </div>
           )}
 
-          <p
-            data-testid="made-with-deepspace"
-            className="absolute bottom-3 left-1/2 flex -translate-x-1/2 items-center gap-2 whitespace-nowrap rounded-full border border-border bg-card/90 px-3 py-1 text-xs text-muted-foreground shadow-lg backdrop-blur"
-          >
-            <a href="https://deep.space" target="_blank" rel="noopener" className="transition-colors hover:text-foreground">
-              Made with <span className="font-semibold text-foreground">DeepSpace</span>
-            </a>
-            <span aria-hidden>·</span>
-            <a href={SOURCE_URL} target="_blank" rel="noopener" className="transition-colors hover:text-foreground">
-              Get the code
-            </a>
-          </p>
+          {!creditHidden && (
+            <p
+              data-testid="made-with-deepspace"
+              className="absolute bottom-3 left-1/2 flex -translate-x-1/2 items-center gap-2 whitespace-nowrap rounded-full border border-border bg-card/90 py-1 pl-3 pr-1 text-xs text-muted-foreground shadow-lg backdrop-blur"
+            >
+              <a href="https://deep.space" target="_blank" rel="noopener" className="transition-colors hover:text-foreground">
+                Made with <span className="font-semibold text-foreground">DeepSpace</span>
+              </a>
+              <span aria-hidden>·</span>
+              <a href={SOURCE_URL} target="_blank" rel="noopener" className="transition-colors hover:text-foreground">
+                Get the code
+              </a>
+              <button
+                type="button"
+                data-testid="made-with-dismiss"
+                onClick={() => setCreditHidden(true)}
+                aria-label="Dismiss"
+                title="Dismiss"
+                className="flex size-5 cursor-pointer items-center justify-center rounded-full transition-colors hover:bg-accent hover:text-foreground"
+              >
+                <X size={12} />
+              </button>
+            </p>
+          )}
         </main>
 
         {/* The left sidebar mirrored: beside the map on wide screens, a drawer over it on narrow ones. */}

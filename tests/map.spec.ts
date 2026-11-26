@@ -34,9 +34,24 @@ test('a visitor without an account keeps what they save after a reload', async (
   await expect(page.getByTestId('my-map')).toContainText('1 saved')
 })
 
+test('the DeepSpace credit can be dismissed and is back on the next visit', async ({ page }) => {
+  await openMap(page)
+  await page.getByTestId('made-with-dismiss').click()
+  await expect(page.getByTestId('made-with-deepspace')).toHaveCount(0)
+  await openMap(page)
+  await expect(page.getByTestId('made-with-deepspace')).toBeVisible()
+})
+
 test('the map draws its pins', async ({ page }) => {
   await openMap(page)
   await expect.poll(async () => Number(await page.getByTestId('map-canvas').getAttribute('data-pins-drawn')), { timeout: 20_000 }).toBeGreaterThan(50)
+})
+
+test('a place that takes several steps shows how to do it', async ({ page }) => {
+  await openMap(page, '/?pin=unique-weapon-012')
+  const guide = page.getByTestId('pin-guide')
+  await expect(guide).toContainText('How to do it')
+  expect(await guide.getByRole('listitem').count()).toBeGreaterThan(2)
 })
 
 test('a place list opens the map showing only that kind of place', async ({ page }) => {

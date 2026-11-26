@@ -110,6 +110,25 @@ export function PinCard({ pin, userData, onGoTo, onReport, commentCount, comment
           </dl>
         )}
 
+        {(pin.requires || pin.steps) && (
+          <section data-testid="pin-guide" className="flex flex-col gap-1.5 rounded-lg bg-muted px-3 py-2.5 text-sm">
+            <h3 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">How to do it</h3>
+            {pin.requires && (
+              <p className="text-foreground">
+                <span className="text-muted-foreground">Needs: </span>
+                {pin.requires}
+              </p>
+            )}
+            {pin.steps && (
+              <ol className="flex list-decimal flex-col gap-1 pl-5 leading-snug text-foreground marker:text-muted-foreground">
+                {pin.steps.map((step) => (
+                  <li key={step}>{step}</li>
+                ))}
+              </ol>
+            )}
+          </section>
+        )}
+
         {credit && (
           <p className="text-xs text-muted-foreground">
             {credit} · {source}
